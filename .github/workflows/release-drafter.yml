@@ -1,19 +1,17 @@
 name: release-drafter
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 jobs:
-  build:
+  draft_release:
+    name: Draft Release
     runs-on: ubuntu-latest
-    env:
-      PACK_NAME: ""
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Draft Release
-        uses: release-drafter/release-drafter@v5
-        id: Draft
+      - uses: release-drafter/release-drafter@v5
+        name: Draft
         with:
           config-name: release-drafter.yml
         env:
